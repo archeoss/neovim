@@ -36,5 +36,69 @@ return {
     config = function ()
       require("copilot_cmp").setup()
     end
-  }
+  },
+  -- React
+	{ "jose-elias-alvarez/typescript.nvim" },
+	{
+		"axelvc/template-string.nvim",
+		event = "InsertEnter",
+		ft = {
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
+		},
+		config = true, -- run require("template-string").setup()
+	},
+	{
+		"lvimuser/lsp-inlayhints.nvim",
+		branch = "main", -- or "anticonceal"
+		config = function()
+			require("plugins.inlay-hints")
+		end,
+	},
+	{
+		"barrett-ruth/import-cost.nvim",
+		build = "sh install.sh yarn",
+		ft = {
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
+		},
+		config = true,
+	},
+	-- Testing
+	{
+		"rcarriga/neotest",
+		-- adapters = {
+  --     require("neotest-rust")
+  --   },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"antoinemadec/FixCursorHold.nvim",
+			"haydenmeade/neotest-jest",
+		},
+		config = function()
+			require("plugins.neotest")
+
+		end,
+	},
+	{
+		"andythigpen/nvim-coverage",
+		dependencies = "nvim-lua/plenary.nvim",
+		cmd = {
+			"Coverage",
+			"CoverageSummary",
+			"CoverageLoad",
+			"CoverageShow",
+			"CoverageHide",
+			"CoverageToggle",
+			"CoverageClear",
+		},
+		config = function()
+			require("coverage").setup()
+		end,
+	},
 }
