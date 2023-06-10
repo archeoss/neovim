@@ -23,6 +23,12 @@ return {
         -- server = astronvim.lsp.config "rust_analyzer",
         tools = {
           inlay_hints = {
+      			-- whether to align to the length of the longest line in the file
+      			max_len_align = true,
+
+      			-- padding from the left if max_len_align is true
+      			max_len_align_padding = 2,
+            
             parameter_hints_prefix = "  ",
             other_hints_prefix = "  ",
           },
@@ -101,4 +107,48 @@ return {
 			require("coverage").setup()
 		end,
 	},
+	{
+		'saecki/crates.nvim',
+		tag = 'v0.3.0',
+		ft = {"rust", "toml"},
+    requires = { 'nvim-lua/plenary.nvim' },
+    null_ls = require('null-ls'),
+    null_ls = { 
+    	enabled = true,
+      name = "crates.nvim",
+    },
+    config = function(_, opts)
+        local crates = require('crates')
+        crates.setup()
+        crates.show()
+    end,
+	},
+	{ 
+		"hrsh7th/nvim-cmp",
+		sources = {
+			{ name = "crates"},
+		}
+	},
+
+	-- THEME
+	{ 
+		"folke/tokyonight.nvim"
+	},
+
+	-- Discord 
+	{
+		'andweeb/presence.nvim',
+		lazy = false
+	},
+
+	-- C/C++
+	{
+		"p00f/clangd_extensions.nvim",
+	},-- install lsp plugin
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = { "clangd" }, -- automatically install lsp
+    },
+  },
 }

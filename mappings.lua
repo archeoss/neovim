@@ -26,7 +26,7 @@ return {
     -- ["<esc>"] = false,
   },
   i = {
-      ["C-f"] = { "lsp#scroll(+8)"},
+      ["C-x"] = { "lsp#scroll(+8)"},
       ["C-d"] = { "lsp#scroll(-8)"},
   },
 }

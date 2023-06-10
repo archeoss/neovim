@@ -2,7 +2,7 @@ return {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
-    channel = "stable", -- "stable" or "nightly"
+    channel = "nightly", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "nightly", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
@@ -19,7 +19,8 @@ return {
 
   -- Set colorscheme to use
   -- colorscheme = "astrodark",
-  colorscheme = "catppuccin",
+  -- colorscheme = "catppuccin",
+  colorscheme = "tokyonight-storm",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
@@ -29,10 +30,27 @@ return {
   lsp = {
     setup_handlers = {
         -- add custom handler
-        rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end
-      },
+      clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end,
+      rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end,
+      tsserver = function(_, opts) require("typescript").setup { server = opts } end,
+    },
     
     formatting = {
+      filter = function(client)
+        -- -- disable formatting for lua_ls
+        if client.name == "denols" then
+          return false
+        end
+        --
+        -- -- only enable null-ls for javascript files
+        -- if vim.bo.filetype == "javascript" then
+        --   return client.name == "null-ls"
+        -- end
+        --
+        -- enable all other clients
+        return true
+      end
+    ,
       -- control auto formatting on save
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
@@ -58,9 +76,24 @@ return {
     
     -- Add overrides for LSP server settings, the keys are the name of the server
     ["config"] = {
-      ['rust_analyzer'] = {
+      ['rust_analyzer'] = { 
         settings = {
           ['rust-analyzer'] = {
+            -- diagnostics = {
+            --   disabled = {"unresolved-proc-macro"},
+            -- },
+            -- assist = {
+            --     importGranularity = "module",
+            --     importPrefix = "by_self",
+            -- },
+            cargo = {
+              buildScripts = {
+                  enable = true,
+              },
+            },
+            procMacro = {
+              enable = false
+            },
             checkOnSave = {
               allFeatures = true,
               overrideCommand = {
@@ -72,6 +105,24 @@ return {
           }
         }
       },
+      -- denols = function(opts)
+      --   opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
+      --   return opts
+      -- end,
+      tsserver = function(opts)
+        opts.root_dir = require("lspconfig.util").root_pattern("package.json")
+        return opts
+      end,
+      -- For eslint:
+      eslint = function(opts)
+        opts.root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js")
+        return opts
+      end,
+      clangd = {
+        capabilities = {
+          offsetEncoding = "utf-8",
+        },
+      }
     },
   },
 
