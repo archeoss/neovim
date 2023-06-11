@@ -28,10 +28,30 @@ return {
   },
 
   lsp = {
+    on_attach = function(client, bufnr) 
+      -- inlay hints
+      local ih = require "lsp-inlayhints"
+      ih.setup()
+      ih.on_attach(client, bufnr)
+    end,
     setup_handlers = {
         -- add custom handler
       clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end,
-      rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end,
+      rust_analyzer = function(_, opts) require("rust-tools").setup { 
+        tools = {
+          inlay_hints = {
+      			-- whether to align to the length of the longest line in the file
+      			-- max_len_align = true,
+
+      			-- padding from the left if max_len_align is true
+      			max_len_align_padding = 2,
+            
+            parameter_hints_prefix = "  ",
+            other_hints_prefix = "  ",
+          },
+        },
+        server = opts,
+      } end,
       tsserver = function(_, opts) require("typescript").setup { server = opts } end,
     },
     
@@ -49,8 +69,7 @@ return {
         --
         -- enable all other clients
         return true
-      end
-    ,
+      end,
       -- control auto formatting on save
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
@@ -109,12 +128,41 @@ return {
       --   opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
       --   return opts
       -- end,
-      tsserver = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("package.json")
-        return opts
-      end,
+      -- ['tsserver'] = function(opts)
+      --   opts.settings = {
+      --
+      --   }
+      --   opts.root_dir = require("lspconfig.util").root_pattern("package.json")
+      --   return opts
+      -- end,
+      tsserver = {
+        settings = {
+          javascript = {
+            inlayHints = {
+              includeInlayEnumMemberValueHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayVariableTypeHints = true,
+            },
+          },
+          typescript = {
+            inlayHints = {
+              includeInlayEnumMemberValueHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayVariableTypeHints = true,
+            },
+          },
+        },
+      },
       -- For eslint:
-      eslint = function(opts)
+      ['eslint'] = function(opts)
         opts.root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js")
         return opts
       end,

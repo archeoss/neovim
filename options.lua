@@ -5,7 +5,7 @@ return {
     -- BEGIN
     --guifont = "Source Code Pro:h8",
     guifont = "JetBrainsMono Nerd Font:h7",
-    -- linespace = 5,
+    linespace = 3,
     --END
     -- set to true or false etc.
     relativenumber = true, -- sets vim.opt.relativenumber
