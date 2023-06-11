@@ -111,7 +111,7 @@ return {
               },
             },
             procMacro = {
-              enable = false
+              enable = true
             },
             checkOnSave = {
               allFeatures = true,
@@ -128,15 +128,8 @@ return {
       --   opts.root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
       --   return opts
       -- end,
-      -- ['tsserver'] = function(opts)
-      --   opts.settings = {
-      --
-      --   }
-      --   opts.root_dir = require("lspconfig.util").root_pattern("package.json")
-      --   return opts
-      -- end,
-      tsserver = {
-        settings = {
+      ['tsserver'] = function(opts)
+        opts.settings = {
           javascript = {
             inlayHints = {
               includeInlayEnumMemberValueHints = true,
@@ -159,8 +152,10 @@ return {
               includeInlayVariableTypeHints = true,
             },
           },
-        },
-      },
+        }
+        opts.root_dir = require("lspconfig.util").root_pattern("package.json")
+        return opts
+      end,
       -- For eslint:
       ['eslint'] = function(opts)
         opts.root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js")

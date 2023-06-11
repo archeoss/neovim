@@ -36,8 +36,7 @@ return {
       end,
     }
     -- config variable is the default configuration table for the setup function call
-    local null_ls = require "null-ls"
-    -- local typescript = require "typescript"
+    -- local null_ls = require "null-ls"
     -- Check supported formatters and linters
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
@@ -45,9 +44,7 @@ return {
       -- typescript.extensions.null-ls.code-actions,
       -- Set a formatter .nvim/lua/null-ls/loop.lua:165: command cspell is not executable (make sure it's installed and on your $PATH)
       -- null_ls.builtins.diagnostics.cspell,
-      -- null_ls.builtins.code_actions.cspell,
       -- null_ls.builtins.formatting.prettier,
-      -- null_ls.builtins.code_actions.eslint_d
     }
     return config -- return final config table
   end,

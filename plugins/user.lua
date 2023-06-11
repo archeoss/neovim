@@ -1,8 +1,10 @@
 return {
   {"catppuccin/nvim"},
   -- You can also add new plugins here as well:
-  { "wakatime/vim-wakatime",
-  lazy = false },
+  { 
+  	"wakatime/vim-wakatime",
+  	lazy = false,
+  },
   {
     "zbirenbaum/copilot.lua",
     event = "VimEnter",
@@ -25,10 +27,7 @@ return {
     end
   },
   -- React
-	{ 
-		"jose-elias-alvarez/typescript.nvim",
-		
-	},
+	{ "jose-elias-alvarez/typescript.nvim" },
 	{
 		"axelvc/template-string.nvim",
 		event = "InsertEnter",
@@ -49,7 +48,6 @@ return {
 		config = function()
 			require("inlay-hints")
 		end,
-		opts = {}
 	},
 	{
 		"barrett-ruth/import-cost.nvim",
