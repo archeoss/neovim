@@ -4,6 +4,7 @@
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
 return {
+  
   -- first key is the mode
   n = {
     -- second key is the lefthand side of the map
@@ -20,6 +21,14 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["."] = {":BaconLoad<CR>:w<CR>:BaconNext<CR>"},
+    [","] = {":BaconList<CR>"},
+    ["<leader>;"] = function(delta)
+      vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.25
+    end,
+    ["<leader>:"] = function(delta)
+      vim.g.neovide_scale_factor = vim.g.neovide_scale_factor / 1.25
+    end,
   },
   t = {
     -- setting a mapping to false will disable it

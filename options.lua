@@ -17,12 +17,12 @@ return {
   g = {
     --Custom Settings
     --BEGIN
-    neovide_refresh_rate = 90,
+    neovide_refresh_rate = 120,
     -- neovide_refresh_rate_idle = 5,
 	  
-    -- neovide_transparency = 1,
-	  -- neovide_cursor_animation_length = 0.09,
-	  -- neovide_cursor_trail_length = 0.15,
+    neovide_transparency = 1,
+	  neovide_cursor_animation_length = 0.08,
+	  neovide_cursor_trail_length = 0.55,
 	  neovide_cursor_antialiasing = true,
 	  neovide_cursor_vfx_mode = "ripple",
 	  neovide_cursor_vfx_opacity = 200.0,
@@ -30,7 +30,17 @@ return {
 	  neovide_cursor_vfx_particle_speed = 20.0,
 	  neovide_cursor_vfx_particle_density = 5.0,
 
+	  neovide_padding_top = 0,
+    neovide_padding_bottom = 0,
+    neovide_padding_right = 0,
+    neovide_padding_left = 0,
+
     neovide_hide_mouse_when_typing = true,
+
+    neovide_underline_automatic_scaling = true,
+
+    neovide_scale_factor=1.0,
+    
     -- neovide_profiler = true,
 
     -- copilot_no_tab_map = true,

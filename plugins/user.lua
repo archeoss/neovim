@@ -19,6 +19,10 @@ return {
   { 
     "simrat39/rust-tools.nvim",
   },
+  { 
+  	"Canop/nvim-bacon",
+  	lazy = false
+  },
   {
     "zbirenbaum/copilot-cmp",
     after = { "copilot.lua" },
@@ -131,4 +135,12 @@ return {
 	{
 		"p00f/clangd_extensions.nvim",
 	},-- install lsp plugin
+	{ "jamesnvc/lsp_server" },
+
+	-- TeX
+	{
+		"barreiroleo/ltex_extra.nvim",
+		ft = {"tex"},
+    dependencies = { "neovim/nvim-lspconfig" }
+	}
 }
