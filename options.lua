@@ -4,7 +4,7 @@ return {
     -- Custom settings
     -- BEGIN
     --guifont = "Source Code Pro:h8",
-    guifont = "JetBrainsMono Nerd Font:h7",
+    guifont = "JetBrainsMono Nerd Font:h11",
     linespace = 3,
     --END
     -- set to true or false etc.
@@ -39,7 +39,7 @@ return {
 
     neovide_underline_automatic_scaling = true,
 
-    neovide_scale_factor=1.0,
+    neovide_scale_factor=1.25,
     
     -- neovide_profiler = true,
 
