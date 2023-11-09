@@ -10,6 +10,7 @@ return {
               or utils.root_has_file ".prettierrc"
               or utils.root_has_file ".prettierrc.json"
               or utils.root_has_file ".prettierrc.js"
+              or utils.root_has_file ".prettierrc.cjs"
           end,
         })
       end,
@@ -21,16 +22,18 @@ return {
               or utils.root_has_file ".prettierrc"
               or utils.root_has_file ".prettierrc.json"
               or utils.root_has_file ".prettierrc.js"
+              or utils.root_has_file ".prettierrc.cjs"
           end,
         })
       end,
       -- For eslint_d:
-      eslint_d = function()
+      eslint = function()
         require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with {
           condition = function(utils)
             return utils.root_has_file "package.json"
               or utils.root_has_file ".eslintrc.json"
               or utils.root_has_file ".eslintrc.js"
+              or utils.root_has_file ".eslintrc.cjs"
           end,
         })
       end,

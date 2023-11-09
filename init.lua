@@ -28,6 +28,8 @@ return {
   },
   lsp = {
     on_attach = function(client, bufnr) 
+      require("clangd_extensions.inlay_hints").setup_autocmd()
+      require("clangd_extensions.inlay_hints").set_inlay_hints()
       -- inlay hints
       local ih = require "lsp-inlayhints"
       ih.setup()
@@ -38,7 +40,7 @@ return {
       ltex = function(_, opts) require("ltex_extra").setup {
         server = opts
       } end,
-      clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end,
+      -- clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end,
       rust_analyzer = function(_, opts) require("rust-tools").setup { 
         tools = {
           inlay_hints = {
@@ -75,6 +77,7 @@ return {
       -- control auto formatting on save
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
+        -- enabled = false, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           -- "go",
         },
@@ -121,7 +124,7 @@ return {
               overrideCommand = {
                 'cargo', 'clippy', '--workspace', '--message-format=json',
                   '--all-targets', '--', '-W', 'clippy::pedantic', '-W', 'clippy::nursery',
-                    '-W', 'clippy::unwrap_used', '-W', 'clippy::expect_used', '-W', 'clippy::all', '-W', 'clippy::cargo',
+                    '-W', 'clippy::unwrap_used', '-W', 'clippy::expect_used', '-W', 'clippy::all',
               }
             }
           }
@@ -162,12 +165,12 @@ return {
       end,
       -- For eslint:
       ['eslint'] = function(opts)
-        opts.root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js")
+        opts.root_dir = require("lspconfig.util").root_pattern("package.json", ".eslintrc.json", ".eslintrc.js", ".eslintrc.cjs")
         return opts
       end,
       clangd = {
         capabilities = {
-          offsetEncoding = "utf-8",
+          offsetEncoding = "utf-16",
         },
       },
       prolog_lsp = function()

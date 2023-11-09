@@ -72,6 +72,7 @@ return {
     presence_workspace_text      = "Working on %s",
     presence_line_number_text    = "Line %s out of %s",
     -- END
+   
   },
 }
 -- If you need more control, you can use the function()...end notation
