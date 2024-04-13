@@ -1,0 +1,26 @@
+---@type LazySpec
+return {
+  -- { "catppuccin/nvim" },
+  -- { "folke/tokyonight.nvim" },
+  -- { "nyoom-engineering/oxocarbon.nvim" },
+  -- { "EdenEast/nightfox.nvim" },
+  -- {
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  --   opts = {
+  --     extend_background_behind_borders = true,
+  --
+  --     enable = {
+  --       terminal = true,
+  --       legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+  --       migrations = true, -- Handle deprecated options automatically
+  --     },
+  --
+  --     styles = {
+  --       bold = true,
+  --       italic = true,
+  --       transparency = true,
+  --     },
+  --   },
+  -- },
+}
