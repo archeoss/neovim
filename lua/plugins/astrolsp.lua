@@ -12,8 +12,7 @@ return {
     },
     formatting = {
       format_on_save = {
-        enabled = true,
-        -- enabled = false,
+        enabled = false,
         allow_filetypes = {
           -- "go",
         },
@@ -38,11 +37,22 @@ return {
     ---@diagnostic disable: missing-fields
     config = {
       rust_analyzer = {
+        -- init_options = {
+        --   rustfmt = {
+        --     rangeFormatting = {
+        --       enable = true,
+        --     },
+        --   }
+        -- },
         settings = {
           ["rust-analyzer"] = {
             -- For Linux Development
             -- linkedProjects = { "./qemu-rust-linux/linux-master/rust-project.json" },
-
+            -- rustfmt = {
+            --   rangeFormatting = {
+            --     enable = true
+            --   },
+            -- },
             diagnostics = {
               disabled = { "unresolved-proc-macro" },
               experimental = { enable = true },
@@ -63,7 +73,9 @@ return {
             -- procMacro = {
             --   enable = true
             -- },
+
             check = {
+
               features = "all",
               overrideCommand = {
                 "cargo",
@@ -217,6 +229,11 @@ return {
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     on_attach = function(client, bufnr)
+
+      -- vim.api.nvim_buf_create_user_command(bufnr, "FormatModifications", function()
+      --   local lsp_format_modifications = require "lsp-format-modifications"
+      --   lsp_format_modifications.format_modifications(client, bufnr)
+      -- end, {})
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
       require("clangd_extensions.inlay_hints").setup_autocmd()

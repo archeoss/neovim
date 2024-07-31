@@ -1,4 +1,4 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 ---@type LazySpec
 return {
@@ -7,8 +7,8 @@ return {
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
     opts = {
       max_time = 1000,
-      max_count = 3,
-      disable_mouse = true,
+      max_count = 10,
+      disable_mouse = false,
       hint = true,
       notification = true,
       -- allow_different_key = false,

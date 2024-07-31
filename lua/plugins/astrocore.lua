@@ -32,7 +32,9 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "auto", -- sets vim.opt.signcolumn to auto
         wrap = true, -- sets vim.opt.wrap
-        guifont = "JetBrainsMono NFM:h11", -- Font
+        -- guifont = "JetBrainsMono NFM:h11", -- Font
+        -- guifont = "Cascadia Mono NF:h11", -- Font
+        guifont = "Hack:h11", -- Font
         linespace = 3, -- Space between lines
       },
       g = { -- vim.g.<key>
@@ -43,6 +45,9 @@ return {
         -- neovide_refresh_rate = 150,
         -- neovide_refresh_rate_idle = 5,
 
+        neovide_text_gamma = 0.0,
+        neovide_text_contrast = 0.8,
+        experimental_layer_grouping = true,
         neovide_transparency = 0.95,
         neovide_cursor_animation_length = 0.08,
         neovide_cursor_trail_length = 0.55,
@@ -152,6 +157,9 @@ return {
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,
+      },
+      v = {
+        ['<leader>f'] = { function() vim.lsp.buf.format({silent = true, buffer = 0, normal = true}) end, desc = "[f]ormat buffer"},
       },
       i = {
         ["C-x"] = { "lsp#scroll(+8)" },
