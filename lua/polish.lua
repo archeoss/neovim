@@ -8,5 +8,8 @@
 vim.filetype.add {
   extension = {
     dbml = "dbml",
+    ovsschema = "ovsschema"
   }
 }
+
+vim.treesitter.language.register('json', 'ovsschema')

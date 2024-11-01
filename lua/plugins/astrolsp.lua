@@ -104,10 +104,44 @@ return {
         settings = {
           gopls = {
             analyses = {
+              ST1003 = true,
+              fieldalignment = false,
+              fillreturns = true,
+              nilness = true,
+              nonewvars = true,
+              shadow = true,
+              undeclaredname = true,
+              unreachable = true,
               unusedparams = true,
+              unusedwrite = true,
+              useany = true,
             },
+            codelenses = {
+              gc_details = true, -- Show a code lens toggling the display of gc's choices.
+              generate = true, -- show the `go generate` lens.
+              regenerate_cgo = true,
+              test = true,
+              tidy = true,
+              upgrade_dependency = true,
+              vendor = true,
+            },
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
+            buildFlags = { "-tags", "integration,unit" },
+            completeUnimported = true,
+            diagnosticsDelay = "500ms",
+            matcher = "Fuzzy",
+            semanticTokens = true,
             staticcheck = true,
-            gofumpt = true,
+            symbolMatcher = "fuzzy",
+            usePlaceholders = true,
           },
         },
       },
@@ -229,7 +263,6 @@ return {
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     on_attach = function(client, bufnr)
-
       -- vim.api.nvim_buf_create_user_command(bufnr, "FormatModifications", function()
       --   local lsp_format_modifications = require "lsp-format-modifications"
       --   lsp_format_modifications.format_modifications(client, bufnr)

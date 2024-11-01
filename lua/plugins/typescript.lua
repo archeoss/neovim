@@ -23,5 +23,16 @@ return {
   --   },
   --   config = true,
   -- },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   "wuelnerdotexe/vim-astro",
+  {
+    "vuki656/package-info.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
+    event = "BufRead package.json",
+  },
 }
